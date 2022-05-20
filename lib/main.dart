@@ -4,30 +4,39 @@ import 'package:flutter/material.dart';
 
 void main() {
   return runApp(
-    MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.blue,
-        appBar: AppBar(
-          title: const Text('Magic 8 Ball'),
-          centerTitle: true,
-          backgroundColor: Colors.blue[900],
-        ),
-        body: const SafeArea(
-          child: M8BallApp(),
-        ),
-      ),
+    const MaterialApp(
+      home: BallPage(),
     ),
   );
 }
 
-class M8BallApp extends StatefulWidget {
-  const M8BallApp({Key? key}) : super(key: key);
+class BallPage extends StatelessWidget {
+  const BallPage({Key? key}) : super(key: key);
 
   @override
-  State<M8BallApp> createState() => _M8BallAppState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      appBar: AppBar(
+        title: const Text('Ask Me Anything'),
+        centerTitle: true,
+        backgroundColor: Colors.blue[900],
+      ),
+      body: const SafeArea(
+        child: Ball(),
+      ),
+    );
+  }
 }
 
-class _M8BallAppState extends State<M8BallApp> {
+class Ball extends StatefulWidget {
+  const Ball({Key? key}) : super(key: key);
+
+  @override
+  State<Ball> createState() => _BallState();
+}
+
+class _BallState extends State<Ball> {
   int imageNum = 1;
 
   void generateMagic8Ball() {
@@ -37,20 +46,14 @@ class _M8BallAppState extends State<M8BallApp> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          Expanded(
-            child: TextButton(
-                child: Image.asset('images/ball$imageNum.png'),
-                onPressed: () {
-                  debugPrint('Image Number: $imageNum');
-                  setState(() {
-                    generateMagic8Ball();
-                  });
-                }),
-          ),
-        ],
-      ),
+      child: TextButton(
+          child: Image.asset('images/ball$imageNum.png'),
+          onPressed: () {
+            debugPrint('Image Number: $imageNum');
+            setState(() {
+              generateMagic8Ball();
+            });
+          }),
     );
   }
 }
