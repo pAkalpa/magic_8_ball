@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.pasindu.magic_8_ball">
    <application
-        android:label="magic_8_ball"
+        android:label="Magic 8 Ball"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
